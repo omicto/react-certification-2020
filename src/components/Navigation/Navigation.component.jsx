@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SearchBar from '../Search';
+import { ToggleButton } from '../styled/ToggleButton.component';
 
 const NavBar = styled.nav`
   display: flex;
@@ -29,6 +30,7 @@ const Navigation = () => {
     <NavBar>
       <Link to="/">WizeTube</Link>
       <SearchBar initialValue="wizeline" />
+      <ToggleButton disabled>Dark mode</ToggleButton>
     </NavBar>
   );
 };

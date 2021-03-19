@@ -1,7 +1,6 @@
 import { data } from '../youtube-videos-mock';
 
 function getVideosFromSearchResults(results) {
-  console.log('aaaaaaaaaaa', results);
   return results.items.filter((item) => item.id.kind === 'youtube#video');
 }
 

@@ -23,7 +23,7 @@ const VideoList = ({ videos }) => {
       {videos.map((video) => {
         const videoDetails = getVideoDetails(video);
         return (
-          <Link to={`/${videoDetails.videoId}`}>
+          <Link to={`/${videoDetails.videoId}`} key={videoDetails.videoId}>
             <VideoCard {...videoDetails} />
           </Link>
         );

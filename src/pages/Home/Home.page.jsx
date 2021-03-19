@@ -9,7 +9,6 @@ function HomePage() {
 
   useEffect(() => {
     const videos = searchVideos('wizeline');
-    console.log(videos);
     setCurrentVideos(videos);
   }, []);
 
