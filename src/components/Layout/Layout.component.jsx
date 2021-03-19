@@ -6,7 +6,7 @@ const Main = styled.main`
   height: 100vh;
   display: flex;
   padding: 50px;
-`
+`;
 
 function Layout({ children }) {
   return <Main>{children}</Main>;

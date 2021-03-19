@@ -6,7 +6,7 @@ import TextInput from '../styled';
 const SearchBar = ({ initialValue }) => {
   const [searchValue, setSearchValue] = useState(initialValue);
 
-  const handleChange = ({ target: {value} } ) => {
+  const handleChange = ({ target: { value } }) => {
     setSearchValue(value);
   };
 
