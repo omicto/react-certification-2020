@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import VideoCard from '../VideoCard/VideoCard.component';
 
 const getVideoDetails = (video) => {
@@ -12,24 +11,15 @@ const getVideoDetails = (video) => {
   return { videoId, title, description, channelTitle, thumbnailUrl };
 };
 
-const Flex = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
 const VideoList = ({ videos }) => {
-  return (
-    <Flex>
-      {videos.map((video) => {
-        const videoDetails = getVideoDetails(video);
-        return (
-          <Link to={`/${videoDetails.videoId}`} key={videoDetails.videoId}>
-            <VideoCard {...videoDetails} />
-          </Link>
-        );
-      })}
-    </Flex>
-  );
+  return videos.map((video) => {
+    const videoDetails = getVideoDetails(video);
+    return (
+      <Link to={`/${videoDetails.videoId}`} key={videoDetails.videoId}>
+        <VideoCard {...videoDetails} />
+      </Link>
+    );
+  });
 };
 
 export default VideoList;
