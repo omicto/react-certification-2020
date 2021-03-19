@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ToggleButton = styled.button`
   background-color: #3f3f3f;
@@ -6,4 +6,4 @@ export const ToggleButton = styled.button`
   padding: 0.5rem;
   border-radius: 3px;
   border: solid #525252 3px;
-`
+`;
