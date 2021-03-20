@@ -1,4 +1,4 @@
-import { data } from '../youtube-videos-mock';
+import { data } from '../../youtube-videos-mock';
 
 function getVideosFromSearchResults(results) {
   return results.items.filter((item) => item.id.kind === 'youtube#video');
@@ -10,4 +10,4 @@ function searchVideos(search) {
   return getVideosFromSearchResults(data);
 }
 
-export { searchVideos };
+export { searchVideos, getVideosFromSearchResults };
