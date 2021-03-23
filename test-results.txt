@@ -1,0 +1,15 @@
+PASS src/utils/youtube-api/youtube-api.test.js
+PASS src/components/styled/TextInput.test.js (5.252s)
+
+=============================== Coverage summary ===============================
+Statements   : 5.63% ( 4/71 )
+Branches     : 0% ( 0/4 )
+Functions    : 7.69% ( 2/26 )
+Lines        : 4.29% ( 3/70 )
+================================================================================
+
+Test Suites: 2 passed, 2 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        11.445s
+Ran all test suites.
