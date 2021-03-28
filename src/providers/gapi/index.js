@@ -3,26 +3,8 @@ import { searchVideos } from '../../utils/youtube-api';
 
 const YouTubeContext = React.createContext(null);
 
-export const useYoutube = () => {
-  return useContext(YouTubeContext);
-};
-
-export const YouTubeApiProvider = (props) => {
+const useGapi = () => {
   const [gapi, setGapi] = useState(null);
-  const [latestSearchResults, setLatestSearchResults] = useState([]);
-
-  const listVideos = async (search) => {
-    const videos = await searchVideos(gapi)(search);
-    setLatestSearchResults(videos);
-    return videos;
-  };
-
-  const value = {
-    isGapiLoaded: !!gapi,
-    listVideos,
-    latestSearchResults,
-  };
-
   useEffect(() => {
     async function init() {
       try {
@@ -39,7 +21,34 @@ export const YouTubeApiProvider = (props) => {
     window.gapi.load('client:auth2', init);
   }, []);
 
-  return (
+  return gapi;
+};
+
+export const useYoutube = () => {
+  return useContext(YouTubeContext);
+};
+
+export const YouTubeApiProvider = (props) => {
+  const [latestSearchResults, setLatestSearchResults] = useState([]);
+  const gapi = useGapi();
+
+  const isGapiLoaded = !!gapi;
+
+  const listVideos = async (search) => {
+    const videos = await searchVideos(gapi)(search);
+    setLatestSearchResults(videos);
+    return videos;
+  };
+
+  const value = {
+    isGapiLoaded,
+    listVideos,
+    latestSearchResults,
+  };
+
+  return isGapiLoaded ? (
     <YouTubeContext.Provider value={value}>{props.children}</YouTubeContext.Provider>
+  ) : (
+    <div>Loading...</div>
   );
 };

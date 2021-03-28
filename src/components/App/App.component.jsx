@@ -7,38 +7,32 @@ import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
 import Layout from '../Layout';
 import Navigation from '../Navigation/Navigation.component';
-import { useYoutube } from '../../providers/gapi';
+import { YouTubeApiProvider } from '../../providers/gapi';
 import VideoPage from '../../pages/VideoDetails';
 
 function App() {
-  const { isGapiLoaded } = useYoutube();
-
   return (
     <BrowserRouter>
       <AuthProvider>
-        {isGapiLoaded ? (
-          <>
-            <Navigation />
-            <Layout>
-              <Switch>
-                <Route exact path="/">
-                  <HomePage />
-                </Route>
-                <Route exact path="/login">
-                  <LoginPage />
-                </Route>
-                <Route exact path="/video/:id">
-                  <VideoPage />
-                </Route>
-                <Route path="*">
-                  <NotFound />
-                </Route>
-              </Switch>
-            </Layout>
-          </>
-        ) : (
-          <div>Loading...</div>
-        )}
+        <YouTubeApiProvider>
+          <Navigation />
+          <Layout>
+            <Switch>
+              <Route exact path="/">
+                <HomePage />
+              </Route>
+              <Route exact path="/login">
+                <LoginPage />
+              </Route>
+              <Route exact path="/video/:id">
+                <VideoPage />
+              </Route>
+              <Route path="*">
+                <NotFound />
+              </Route>
+            </Switch>
+          </Layout>
+        </YouTubeApiProvider>
       </AuthProvider>
     </BrowserRouter>
   );
