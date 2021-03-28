@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import './Home.styles.css';
 
-import { searchVideos } from '../../utils/youtube-api';
 import VideoList from '../../components/VideoList/VideoList.component';
+import { useYoutube } from '../../providers/gapi';
 
 function HomePage() {
   const [currentVideos, setCurrentVideos] = useState([]);
+  const { listVideos } = useYoutube();
 
   useEffect(() => {
-    const videos = searchVideos('wizeline');
-    setCurrentVideos(videos);
+    const doSearch = async () => {
+      const videos = await listVideos('tool');
+      setCurrentVideos(videos);
+    };
+    doSearch();
+    // eslint-disable-next-line
   }, []);
 
   return (
