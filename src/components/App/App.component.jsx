@@ -8,6 +8,7 @@ import NotFound from '../../pages/NotFound';
 import Layout from '../Layout';
 import Navigation from '../Navigation/Navigation.component';
 import { useYoutube } from '../../providers/gapi';
+import VideoPage from '../../pages/VideoDetails';
 
 function App() {
   const { isGapiLoaded } = useYoutube();
@@ -25,6 +26,9 @@ function App() {
                 </Route>
                 <Route exact path="/login">
                   <LoginPage />
+                </Route>
+                <Route exact path="/video/:id">
+                  <VideoPage />
                 </Route>
                 <Route path="*">
                   <NotFound />
