@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Home.styles.css';
 
-import VideoList from '../../components/VideoList/VideoList.component';
+import VideoList from '../../components/Video/VideoList/VideoList.component';
 import { useYoutube } from '../../providers/gapi';
 
 function HomePage() {
