@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useContext, useReducer } from 'react';
+import React, { useEffect, useState, useContext, useReducer, useCallback } from 'react';
 import { useHistory } from 'react-router';
-import { searchVideos } from '../../utils/youtube-api';
+import { searchVideos, relatedVideos } from '../../utils/youtube-api';
 import { initialState, videoReducer, actions } from './reducer';
 
 const useGapi = () => {
@@ -36,10 +36,21 @@ export const VideoProvider = (props) => {
   const gapi = useGapi();
   const isGapiLoaded = !!gapi;
 
-  const listVideos = async (search) => {
-    const videos = await searchVideos(gapi)(search);
-    dispatch({ type: actions.SET_VIDEOS, payload: videos });
-  };
+  const listVideos = useCallback(
+    async (search) => {
+      const videos = await searchVideos(gapi)(search);
+      dispatch({ type: actions.SET_VIDEOS, payload: videos });
+    },
+    [gapi]
+  );
+
+  const searchRelatedVideos = useCallback(
+    async (videoId) => {
+      const videos = await relatedVideos(gapi)(videoId);
+      dispatch({ type: actions.SET_RELATED_VIDEOS, payload: videos });
+    },
+    [gapi]
+  );
 
   const doSearch = (search) => {
     dispatch({ type: actions.SEARCH, payload: search });
@@ -50,6 +61,7 @@ export const VideoProvider = (props) => {
     isGapiLoaded,
     listVideos,
     doSearch,
+    searchRelatedVideos,
     ...state,
   };
 

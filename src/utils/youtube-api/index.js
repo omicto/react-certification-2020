@@ -16,12 +16,12 @@ export function relatedVideos(gapi) {
   return async (videoId) => {
     const {
       result: { items },
-    } = await gapi?.client.youtube.videoId.list({
+    } = await gapi?.client.youtube.search.list({
       relatedToVideoId: videoId,
       part: ['id', 'snippet'],
       maxResults: 10,
       type: ['video'],
     });
-    return items;
+    return items.filter((i) => i.snippet);
   };
 }

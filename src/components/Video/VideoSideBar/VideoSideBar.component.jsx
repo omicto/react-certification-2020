@@ -9,10 +9,10 @@ const FlexNav = styled.nav`
 `;
 
 const VideoSideBar = () => {
-  const { videos } = useVideoContext();
+  const { relatedVideos } = useVideoContext();
   return (
     <FlexNav>
-      <VideoList videos={videos} />
+      <VideoList videos={relatedVideos} />
     </FlexNav>
   );
 };
