@@ -7,7 +7,9 @@ const VideoPage = () => {
   const { id } = useParams();
   return (
     <div>
-      <Video id={id} />
+      <div>
+        <Video id={id} />
+      </div>
       <VideoSideBar />
     </div>
   );

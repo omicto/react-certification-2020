@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
+import { useVideoContext } from '../../providers/video';
 import TextInput from '../styled';
 
 // TODO Add some Search Logic here
 
-const SearchBar = ({ initialValue }) => {
-  const [searchValue, setSearchValue] = useState(initialValue);
+const SearchBar = () => {
+  const { lastSearch, doSearch } = useVideoContext();
+  const [searchValue, setSearchValue] = useState(lastSearch);
 
   const handleChange = ({ target: { value } }) => {
     setSearchValue(value);
+  };
+
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      doSearch(searchValue);
+    }
   };
 
   return (
@@ -18,7 +26,7 @@ const SearchBar = ({ initialValue }) => {
       placeholder="Search..."
       value={searchValue}
       onChange={handleChange}
-      disabled
+      onKeyUp={handleEnter}
     />
   );
 };

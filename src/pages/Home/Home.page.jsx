@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './Home.styles.css';
 
 import VideoList from '../../components/Video/VideoList/VideoList.component';
-import { useYoutube } from '../../providers/gapi';
+import { useVideoContext } from '../../providers/video';
 
 function HomePage() {
-  const [currentVideos, setCurrentVideos] = useState([]);
-  const { listVideos } = useYoutube();
+  const { listVideos, videos, lastSearch } = useVideoContext();
 
   useEffect(() => {
-    const doSearch = async () => {
-      const videos = await listVideos('tool');
-      setCurrentVideos(videos);
-    };
-    doSearch();
+    listVideos(lastSearch);
     // eslint-disable-next-line
-  }, []);
+  }, [lastSearch]);
 
   return (
     <section className="homepage">
-      <VideoList videos={currentVideos} />
+      <VideoList videos={videos} />
     </section>
   );
 }

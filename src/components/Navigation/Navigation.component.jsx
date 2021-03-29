@@ -29,7 +29,7 @@ const Navigation = () => {
   return (
     <NavBar>
       <Link to="/">WizeTube</Link>
-      <SearchBar initialValue="wizeline" />
+      <SearchBar />
       <ToggleButton disabled>Dark mode</ToggleButton>
     </NavBar>
   );

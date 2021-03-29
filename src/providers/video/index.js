@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useReducer } from 'react';
+import { useHistory } from 'react-router';
 import { searchVideos } from '../../utils/youtube-api';
-
-const YouTubeContext = React.createContext(null);
+import { initialState, videoReducer, actions } from './reducer';
 
 const useGapi = () => {
   const [gapi, setGapi] = useState(null);
@@ -24,26 +24,33 @@ const useGapi = () => {
   return gapi;
 };
 
-export const useYoutube = () => {
+const YouTubeContext = React.createContext(null);
+
+export const useVideoContext = () => {
   return useContext(YouTubeContext);
 };
 
-export const YouTubeApiProvider = (props) => {
-  const [latestSearchResults, setLatestSearchResults] = useState([]);
+export const VideoProvider = (props) => {
+  const history = useHistory();
+  const [state, dispatch] = useReducer(videoReducer, initialState);
   const gapi = useGapi();
-
   const isGapiLoaded = !!gapi;
 
   const listVideos = async (search) => {
     const videos = await searchVideos(gapi)(search);
-    setLatestSearchResults(videos);
-    return videos;
+    dispatch({ type: actions.SET_VIDEOS, payload: videos });
+  };
+
+  const doSearch = (search) => {
+    dispatch({ type: actions.SEARCH, payload: search });
+    history.push('/');
   };
 
   const value = {
     isGapiLoaded,
     listVideos,
-    latestSearchResults,
+    doSearch,
+    ...state,
   };
 
   return isGapiLoaded ? (

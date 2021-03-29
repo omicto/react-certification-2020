@@ -1,20 +1,20 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import AuthProvider from '../../providers/Auth';
+import AuthProvider from '../../providers/auth';
 import HomePage from '../../pages/Home';
 import LoginPage from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
 import Layout from '../Layout';
 import Navigation from '../Navigation/Navigation.component';
-import { YouTubeApiProvider } from '../../providers/gapi';
+import { VideoProvider } from '../../providers/video';
 import VideoPage from '../../pages/VideoDetails';
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <YouTubeApiProvider>
+        <VideoProvider>
           <Navigation />
           <Layout>
             <Switch>
@@ -32,7 +32,7 @@ function App() {
               </Route>
             </Switch>
           </Layout>
-        </YouTubeApiProvider>
+        </VideoProvider>
       </AuthProvider>
     </BrowserRouter>
   );
