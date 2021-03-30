@@ -10,20 +10,37 @@ const Flex = styled.div`
   flex-direction: row;
 `;
 
+const VideoDetailsContainer = styled.div`
+  max-width: 640px;
+  p {
+    font-size: 0.8rem;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+    margin: 0.2rem 0;
+  }
+`;
+
 const VideoPage = () => {
   const { id } = useParams();
-  const { searchRelatedVideos } = useVideoContext();
+  const { searchRelatedVideos, setCurrentVideoById, currentVideo } = useVideoContext();
 
   useEffect(() => {
+    setCurrentVideoById(id);
     searchRelatedVideos(id);
-  }, [id, searchRelatedVideos]);
+    console.log(currentVideo);
+    // eslint-disable-next-line
+  }, [id]);
 
   return (
     <Flex>
-      <div>
+      <VideoDetailsContainer>
         <Video id={id} />
-        <p>Hola hola</p>
-      </div>
+        <h1>{currentVideo.title}</h1>
+        <small>{currentVideo.channelTitle}</small>
+        <p>{currentVideo.description}</p>
+      </VideoDetailsContainer>
 
       <VideoSideBar />
     </Flex>

@@ -25,3 +25,15 @@ export function relatedVideos(gapi) {
     return items.filter((i) => i.snippet);
   };
 }
+
+export function getVideo(gapi) {
+  return async (videoId) => {
+    const {
+      result: { items },
+    } = await gapi?.client.youtube.videos.list({
+      id: videoId,
+      part: ['snippet'],
+    });
+    return items[0]?.snippet;
+  };
+}
