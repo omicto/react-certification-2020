@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import SearchBar from '../Search';
-import { ToggleButton } from '../styled/ToggleButton.component';
+import { SearchBar } from 'components';
+import { ToggleButton } from 'components/styled';
 
 const NavBar = styled.nav`
   display: flex;

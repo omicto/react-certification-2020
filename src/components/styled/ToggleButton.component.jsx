@@ -7,3 +7,5 @@ export const ToggleButton = styled.button`
   border-radius: 3px;
   border: solid #525252 3px;
 `;
+
+export default ToggleButton;

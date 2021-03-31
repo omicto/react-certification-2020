@@ -1,14 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import AuthProvider from '../../providers/Auth';
-import HomePage from '../../pages/Home';
-import LoginPage from '../../pages/Login';
-import NotFound from '../../pages/NotFound';
-import Layout from '../Layout';
-import Navigation from '../Navigation/Navigation.component';
-import { VideoProvider } from '../../providers/video';
-import VideoPage from '../../pages/VideoDetails';
+import AuthProvider from 'providers/Auth';
+import { VideoProvider } from 'providers/video';
+import { Layout, Navigation } from 'components';
+import { HomePage, LoginPage, NotFoundPage, VideoDetailsPage } from 'pages';
 
 function App() {
   return (
@@ -25,10 +21,10 @@ function App() {
                 <LoginPage />
               </Route>
               <Route exact path="/video/:id">
-                <VideoPage />
+                <VideoDetailsPage />
               </Route>
               <Route path="*">
-                <NotFound />
+                <NotFoundPage />
               </Route>
             </Switch>
           </Layout>

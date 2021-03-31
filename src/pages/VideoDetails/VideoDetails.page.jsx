@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
-import Video from '../../components/Video/Video';
-import VideoSideBar from '../../components/Video/VideoSideBar/VideoSideBar.component';
-import { useVideoContext } from '../../providers/video';
+import { useVideoContext } from 'providers/video';
+import { Video, VideoSidebar } from 'components/Video';
 
 const Flex = styled.div`
   display: flex;
@@ -22,7 +21,7 @@ const VideoDetailsContainer = styled.div`
   }
 `;
 
-const VideoPage = () => {
+const VideoDetailsPage = () => {
   const { id } = useParams();
   const { searchRelatedVideos, setCurrentVideoById, currentVideo } = useVideoContext();
 
@@ -42,9 +41,9 @@ const VideoPage = () => {
         <p>{currentVideo.description}</p>
       </VideoDetailsContainer>
 
-      <VideoSideBar />
+      <VideoSidebar />
     </Flex>
   );
 };
 
-export default VideoPage;
+export default VideoDetailsPage;

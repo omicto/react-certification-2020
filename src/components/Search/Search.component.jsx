@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { useVideoContext } from '../../providers/video';
-import TextInput from '../styled';
-
-// TODO Add some Search Logic here
+import { useVideoContext } from 'providers/video';
+import { TextInput } from 'components/styled';
 
 const SearchBar = () => {
   const { lastSearch, doSearch } = useVideoContext();

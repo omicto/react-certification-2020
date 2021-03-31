@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import './Home.styles.css';
 
-import VideoList from '../../components/Video/VideoList/VideoList.component';
-import { useVideoContext } from '../../providers/video';
+import { VideoList } from 'components/Video';
+import { useVideoContext } from 'providers/video';
 
 function HomePage() {
   const { listVideos, videos, lastSearch } = useVideoContext();

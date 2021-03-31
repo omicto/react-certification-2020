@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import VideoCard from '../VideoCard/VideoCard.component';
+import { VideoCard } from 'components/Video';
 
 const getVideoDetails = (video) => {
   const {
