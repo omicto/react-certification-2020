@@ -9,7 +9,7 @@ export const initialState = {
   videos: [],
   relatedVideos: [],
   currentVideo: {},
-  lastSearch: 'tool',
+  lastSearch: 'Wizeline',
 };
 
 export const videoReducer = (state, action) => {
