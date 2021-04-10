@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import VideoCard from '../VideoCard/VideoCard.component';
+import { VideoCard } from 'components/Video';
 
 const getVideoDetails = (video) => {
   const {
@@ -15,7 +15,7 @@ const VideoList = ({ videos }) => {
   return videos.map((video) => {
     const videoDetails = getVideoDetails(video);
     return (
-      <Link to={`/${videoDetails.videoId}`} key={videoDetails.videoId}>
+      <Link to={`/video/${videoDetails.videoId}`} key={videoDetails.videoId}>
         <VideoCard {...videoDetails} />
       </Link>
     );

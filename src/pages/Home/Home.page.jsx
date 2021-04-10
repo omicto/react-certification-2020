@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './Home.styles.css';
 
-import { searchVideos } from '../../utils/youtube-api';
-import VideoList from '../../components/VideoList/VideoList.component';
+import { VideoList } from 'components/Video';
+import { useVideoContext } from 'providers/video';
 
 function HomePage() {
-  const [currentVideos, setCurrentVideos] = useState([]);
+  const { listVideos, videos, lastSearch } = useVideoContext();
 
   useEffect(() => {
-    const videos = searchVideos('wizeline');
-    setCurrentVideos(videos);
-  }, []);
+    listVideos(lastSearch);
+    // eslint-disable-next-line
+  }, [lastSearch]);
 
   return (
     <section className="homepage">
-      <VideoList videos={currentVideos} />
+      <VideoList videos={videos} />
     </section>
   );
 }
